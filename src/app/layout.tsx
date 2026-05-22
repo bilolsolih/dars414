@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import Link from 'next/link';
 
 import "./globals.css";
+import Providers from "@/providers/tan-stack.provider";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -10,20 +11,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en" className={`h-full antialiased`}>
-            <body className="min-h-full flex flex-col">
-                <header>
-                    <nav>
-                        <ul className="flex items-center gap-10">
-                            <li><Link href="/news">News Page</Link></li>
-                            <li><Link href="/news/7">News Detail</Link></li>
-                            <li><Link href="/courses">Courses</Link></li>
-                        </ul>
-                    </nav>
-                </header>
-                <h1>Global Layout</h1>
-                {children}
-            </body>
-        </html>
+        <Providers>
+            <html lang="en" className={`h-full antialiased`}>
+                <body className="min-h-full flex flex-col">
+                    <header>
+                        <nav>
+                            <ul className="flex items-center gap-10">
+                                <li><Link href="/news">News Page</Link></li>
+                                <li><Link href="/news/7">News Detail</Link></li>
+                                <li><Link href="/courses">Courses</Link></li>
+                            </ul>
+                        </nav>
+                    </header>
+                    <h1>Global Layout</h1>
+                    {children}
+                </body>
+            </html>
+        </Providers>
     );
 }
